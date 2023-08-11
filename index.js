@@ -1,12 +1,32 @@
-const http = require('http');
-const PORT = 3000;
+const express = require('express');
+const app = express();
+const port = 3000;
 
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello World!');
+// Sample list of fruits
+const fruits = [
+    { id: 1, name: 'Apple' },
+    { id: 2, name: 'Banana' },
+    // ... (other fruits)
+];
+
+// Sample list of animals
+const animals = [
+    { id: 1, name: 'Lion' },
+    { id: 2, name: 'Elephant' },
+    // ... (other animals)
+];
+
+// Endpoint to get the list of fruits
+app.get('/fruits', (req, res) => {
+    res.json(fruits);
 });
 
-server.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}/`);
+// Endpoint to get the list of animals
+app.get('/animals', (req, res) => {
+    res.json(animals);
+});
+
+// Start the server
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
 });
